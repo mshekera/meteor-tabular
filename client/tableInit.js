@@ -21,7 +21,7 @@ tableInit = function tableInit(tabularTable, template) {
 
       // If there's also data attached, then we can still
       // sort on this column. If not, then we shouldn't try.
-      if (!("data" in col)) {
+      if (!("data" in col) && !("relatedProp" in col)) {
         col.orderable = false;
       }
 
@@ -43,7 +43,7 @@ tableInit = function tableInit(tabularTable, template) {
     }
 
     // Build the list of field names we want included
-    var dataProp = col.data;
+    var dataProp = col.data || col.relatedProp;
     if (typeof dataProp === "string") {
       // If it's referencing an instance function, don't
       // include it. Prevent sorting and searching because

@@ -47,7 +47,7 @@ Util.getMongoSort = function getMongoSort(order, columns) {
   // and ignore instance functions like "foo()"
   var sort = [];
   _.each(order, function (ord) {
-    var propName = columns[ord.column].data;
+    var propName = columns[ord.column].data || columns[ord.column].relatedProp;
     var orderable = columns[ord.column].orderable;
     if (typeof propName === 'string' && orderable !== false) {
       sort.push([propName, ord.dir]);
